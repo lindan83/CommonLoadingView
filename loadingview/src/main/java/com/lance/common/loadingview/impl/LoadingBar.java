@@ -119,9 +119,7 @@ public final class LoadingBar implements ILoadingBar {
      * 取消所有loading
      */
     private static void cancelAll() {
-        Iterator<Map.Entry<View, LoadingBar>> it = LOADING_BARS.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<View, LoadingBar> entry = it.next();
+        for (Map.Entry<View, LoadingBar> entry : LOADING_BARS.entrySet()) {
             cancel(entry.getKey());
         }
     }

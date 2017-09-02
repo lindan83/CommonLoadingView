@@ -4,10 +4,11 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.view.Window;
 
+import com.lance.common.loadingview.ILoadingDialog;
 import com.lance.common.loadingview.LoadingConfig;
 import com.lance.common.loadingview.factory.DialogFactory;
-import com.lance.common.loadingview.ILoadingDialog;
 
 public class LoadingDialog implements ILoadingDialog {
     private static LoadingDialog LOADING_DIALOG;
@@ -20,7 +21,10 @@ public class LoadingDialog implements ILoadingDialog {
         this.factory = factory;
         int animateStyleId = this.factory.getAnimateStyleId();
         if (animateStyleId > 0) {
-            this.dialog.getWindow().setWindowAnimations(animateStyleId);
+            Window window = this.dialog.getWindow();
+            if(window != null) {
+                window.setWindowAnimations(animateStyleId);
+            }
         }
     }
 
